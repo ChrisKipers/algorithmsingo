@@ -20,7 +20,7 @@ type groupEdge struct {
 	g2 *VertexGroup
 }
 
-func CalculateMinCut(graph UndirectedGraph, numberOfCuts int) MinCut {
+func CalculateMinCut(graph Graph, numberOfCuts int) MinCut {
 	var bestMinCut *MinCut = nil
 	myRand := rand.New(rand.NewSource(time.Now().UnixNano()))
 	numOfTrials := getNumberOfTrials(len(graph.Vertices))
@@ -33,7 +33,7 @@ func CalculateMinCut(graph UndirectedGraph, numberOfCuts int) MinCut {
 	return *bestMinCut
 }
 
-func CalculateMinCutPar(graph UndirectedGraph, numberOfCuts int) MinCut {
+func CalculateMinCutPar(graph Graph, numberOfCuts int) MinCut {
 	numVertices := len(graph.Vertices)
 	numOfTrials := getNumberOfTrials(len(graph.Vertices))
 	minCuts := make(chan MinCut, numVertices)
@@ -66,7 +66,7 @@ func watchWg(wg *sync.WaitGroup, channel chan MinCut) {
 	close(channel)
 }
 
-func calculateMinCut(graph UndirectedGraph, numberOfCuts int, myRand *rand.Rand) MinCut {
+func calculateMinCut(graph Graph, numberOfCuts int, myRand *rand.Rand) MinCut {
 	vertexToGroup := make(map[int]*VertexGroup)
 	groups := []*VertexGroup{}
 

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func CalculateConnectedComponents(graph UndirectedGraph) [][]int {
+func CalculateConnectedComponents(graph Graph) [][]int {
 	components := [][]int{}
 	currentComponent := []int{}
 	unexploredVertices := mapset.NewSet()
@@ -24,7 +24,7 @@ func CalculateConnectedComponents(graph UndirectedGraph) [][]int {
 	return components
 }
 
-func exploreVertex(vertex int, unexploredVertices mapset.Set, currentComponent *[]int, graph UndirectedGraph) {
+func exploreVertex(vertex int, unexploredVertices mapset.Set, currentComponent *[]int, graph Graph) {
 	fmt.Println(*currentComponent)
 	if !unexploredVertices.Contains(vertex) {
 		return

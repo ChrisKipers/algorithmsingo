@@ -10,18 +10,19 @@ type Edge struct {
 	weight int
 }
 
-type UndirectedGraph struct {
+
+type Graph struct {
 	Vertices      []int
 	Edges         []Edge
 	edgesByVertex map[int][]Edge
 }
 
-func (graph *UndirectedGraph) AddVertex(vertex int) {
+func (graph *Graph) AddVertex(vertex int) {
 	graph.Vertices = append(graph.Vertices, vertex)
 	graph.edgesByVertex[vertex] = []Edge{}
 }
 
-func (graph *UndirectedGraph) AddEdge(vertex1 int, vertex2 int, weight int) {
+func (graph *Graph) AddEdge(vertex1 int, vertex2 int, weight int) {
 	newEdge := Edge{
 		V1:     vertex1,
 		V2:     vertex2,
@@ -33,17 +34,28 @@ func (graph *UndirectedGraph) AddEdge(vertex1 int, vertex2 int, weight int) {
 	graph.edgesByVertex[vertex2] = append(graph.edgesByVertex[vertex2], newEdge)
 }
 
-func (graph UndirectedGraph) GetEdgesForVertex(vertex int) []Edge {
+func (graph *Graph) AddDirectedEdge(vertex1 int, vertex2 int, weight int) {
+	newEdge := Edge{
+		V1:     vertex1,
+		V2:     vertex2,
+		weight: weight,
+	}
+
+	graph.Edges = append(graph.Edges, newEdge)
+	graph.edgesByVertex[vertex1] = append(graph.edgesByVertex[vertex1], newEdge)
+}
+
+func (graph Graph) GetEdgesForVertex(vertex int) []Edge {
 	return graph.edgesByVertex[vertex]
 }
-func NewUndriectedGraph() *UndirectedGraph {
-	return &UndirectedGraph{
+func NewGraph() *Graph {
+	return &Graph{
 		edgesByVertex: make(map[int][]Edge),
 	}
 }
 
-func GenerateRandomUndirectedGraph(numOfVertices int, numberOfEdges int, minWeight float64, maxWeight float64, isConnected bool) UndirectedGraph {
-	graph := *NewUndriectedGraph()
+func GenerateRandomGraph(numOfVertices int, numberOfEdges int, minWeight float64, maxWeight float64, isConnected bool) Graph {
+	graph := *NewGraph()
 	//	if numOfVertices < numberOfEdges - 1 {
 	//		return graph, errors.New("numberOfEdges must be greater than numOfVertices")
 	//	}

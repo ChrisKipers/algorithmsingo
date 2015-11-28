@@ -7,7 +7,7 @@ import (
 )
 
 func TestMinCut(t *testing.T) {
-	graph := *NewUndriectedGraph()
+	graph := *NewGraph()
 	graph.AddVertex(1)
 	graph.AddVertex(2)
 	graph.AddVertex(3)

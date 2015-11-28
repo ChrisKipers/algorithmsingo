@@ -9,7 +9,7 @@ import (
 func TestConnectedComponents(t *testing.T)  {
 	t.Log("When calculating connected components")
 	{
-		graph := NewUndriectedGraph()
+		graph := NewGraph()
 		graph.AddVertex(1)
 		graph.AddVertex(2)
 		graph.AddVertex(3)
