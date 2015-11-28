@@ -33,6 +33,9 @@ func (graph *UndirectedGraph) AddEdge(vertex1 int, vertex2 int, weight int) {
 	graph.edgesByVertex[vertex2] = append(graph.edgesByVertex[vertex2], newEdge)
 }
 
+func (graph UndirectedGraph) GetEdgesForVertex(vertex int) []Edge {
+	return graph.edgesByVertex[vertex]
+}
 func NewUndriectedGraph() *UndirectedGraph {
 	return &UndirectedGraph{
 		edgesByVertex: make(map[int][]Edge),
