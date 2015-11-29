@@ -7,7 +7,7 @@ import (
 type Edge struct {
 	V1     int
 	V2     int
-	weight int
+	weight float64
 }
 
 
@@ -22,7 +22,7 @@ func (graph *Graph) AddVertex(vertex int) {
 	graph.edgesByVertex[vertex] = []Edge{}
 }
 
-func (graph *Graph) AddEdge(vertex1 int, vertex2 int, weight int) {
+func (graph *Graph) AddEdge(vertex1 int, vertex2 int, weight float64) {
 	newEdge := Edge{
 		V1:     vertex1,
 		V2:     vertex2,
@@ -34,7 +34,7 @@ func (graph *Graph) AddEdge(vertex1 int, vertex2 int, weight int) {
 	graph.edgesByVertex[vertex2] = append(graph.edgesByVertex[vertex2], newEdge)
 }
 
-func (graph *Graph) AddDirectedEdge(vertex1 int, vertex2 int, weight int) {
+func (graph *Graph) AddDirectedEdge(vertex1 int, vertex2 int, weight float64) {
 	newEdge := Edge{
 		V1:     vertex1,
 		V2:     vertex2,
